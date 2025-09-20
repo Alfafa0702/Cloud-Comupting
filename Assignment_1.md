@@ -3,8 +3,8 @@
 ### Deadline: 23:59, Sep 23
 ---
 
-### Name:
-### Student Id:
+### Name: ZHOU Yixin
+### Student Id: 224040090
 ---
 
 ## Question 1: Measure the EC2 CPU and Memory performance
