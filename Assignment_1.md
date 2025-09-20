@@ -30,7 +30,11 @@
     | `c5d.large` |   477.67              |   20823.45                 |
 
     > Region: US East (N. Virginia)
-
+    >
+    > Analysis:
+    > - Overall, `c5d.large` performs better than `t3.medium` and `m5.large` in terms of both CPU and memory performance. This can be explained by the different AWS EC2 Instance Family Designs.
+    > - For `t3`/`m5` family ([general purpose instances](https://docs.aws.amazon.com/ec2/latest/instancetypes/gp.html)), AWS positions these families as “balanced” for a wide range of workloads (web servers, small databases, etc.). They prioritize overall balance between CPU, memory, and networking—not specialized performance in one area. Thus, their CPU and memory capabilities are tuned to be adequate for general tasks but not optimized for extreme compute or memory throughput.
+    > - For `c5d` family ([compute optimized instances](https://docs.aws.amazon.com/ec2/latest/instancetypes/co.html)), AWS designs `c5`/`c5d` instances for compute-intensive workloads (e.g., batch processing, high-performance computing). `c5d` instances are featured by faster CPU architectures (e.g., higher clock speeds, more efficient instruction sets like AVX-512 for arithmetic tasks), optimized memory subsystems (faster memory controllers, higher bandwidth between CPU and RAM) to support compute-heavy jobs that rely on fast data access. Also, the `c5d` variant includes local NVMe storage, which reduces bottlenecks in I/O-heavy tasks and can indirectly improve memory performance by offloading some data handling to ultra-fast local storage.
 ## Question 2: Measure the EC2 Network performance
 
 1. (1 mark) The metrics of network performance include **TCP bandwidth** and **round-trip time (RTT)**. Within the same region, what network performance is experienced between instances of the same type and different types? In order to answer this question, you need to complete the following table.  
