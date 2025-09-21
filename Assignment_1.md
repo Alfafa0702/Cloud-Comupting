@@ -49,6 +49,10 @@
     | `m5.large`-`t3.medium` |  2.02              |  0.892        |
 
     > Region: US East (N. Virginia)
+    >
+    > Between the same type of instances, the TCP b/w is high (4.08-4.93 Gbps) and the RTT is short (0.206-0.322 ms). This result shows that network performance between same-type instances can utilize the resources more efficiently and the latancy is low.
+    >
+    > Between different types of instances, the TCP b/w is low (2.02-3.8 Gbps) and the RTT is long (0.384-0.892 ms). This result shows that network utility between different types is inefficent and the responce speed of network is slow.
 
 2. (1 mark) What about the network performance for instances deployed in different regions? In order to answer this question, you need to complete the following table.
 
@@ -59,4 +63,5 @@
     | Oregon-Oregon |   4970              |  0.129                  |
 
     > All instances are `c5.large`.
+    > The results show that network between different regions is much worse than that between the same regions.
 
