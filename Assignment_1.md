@@ -41,24 +41,24 @@
 
     | Type          | TCP b/w (Gbps) | RTT (ms) |
     |---------------|----------------|----------|
-    | `t3.medium`-`t3.medium` |   4.08             |  0.322        |
-    | `m5.large`-`m5.large`  |    4.93            |   0.206       |
-    | `c5n.large`-`c5n.large` |   4.94             |   0.314       |
-    | `t3.medium`-`c5n.large`   | 3.8               |  0.384        |
-    | `m5.large`-`c5n.large`  |   2.34             |   0.732       |
-    | `m5.large`-`t3.medium` |  2.02              |  0.892        |
+    | `t3.medium`-`t3.medium` |   4080             |  0.322        |
+    | `m5.large`-`m5.large`  |    4930            |   0.206       |
+    | `c5n.large`-`c5n.large` |   4940             |   0.314       |
+    | `t3.medium`-`c5n.large`   | 3800               |  0.384        |
+    | `m5.large`-`c5n.large`  |   2340             |   0.732       |
+    | `m5.large`-`t3.medium` |  2020              |  0.892        |
 
     > Region: US East (N. Virginia)
     >
-    > Between the same type of instances, the TCP b/w is high (4.08-4.93 Gbps) and the RTT is short (0.206-0.322 ms). This result shows that network performance between same-type instances can utilize the resources more efficiently and the latancy is low.
+    > Between the same type of instances, the TCP b/w is high (4080-4930 Mbps) and the RTT is short (0.206-0.322 ms). This result shows that network performance between same-type instances can utilize the resources more efficiently and the latancy is low.
     >
-    > Between different types of instances, the TCP b/w is low (2.02-3.8 Gbps) and the RTT is long (0.384-0.892 ms). This result shows that network utility between different types is inefficent and the responce speed of network is slow.
+    > Between different types of instances, the TCP b/w is low (2020-3800 Mbps) and the RTT is long (0.384-0.892 ms). This result shows that network utility between different types is inefficent and the responce speed of network is slow.
 
 2. (1 mark) What about the network performance for instances deployed in different regions? In order to answer this question, you need to complete the following table.
 
     | Connection | TCP b/w (Mbps)  | RTT (ms) |
     |------------|-----------------|--------------------|
-    | N. Virginia-Oregon |    38.6             |    60.371               |
+    | N. Virginia-Oregon |    480             |    60.371               |
     | N. Virginia-N. Virginia  |   4940              |   0.021                 |
     | Oregon-Oregon |   4970              |  0.129                  |
 
