@@ -39,14 +39,14 @@
 
 1. (1 mark) The metrics of network performance include **TCP bandwidth** and **round-trip time (RTT)**. Within the same region, what network performance is experienced between instances of the same type and different types? In order to answer this question, you need to complete the following table.  
 
-    | Type          | TCP b/w (Mbps) | RTT (ms) |
+    | Type          | TCP b/w (Gbps) | RTT (ms) |
     |---------------|----------------|----------|
-    | `t3.medium`-`t3.medium` |                |          |
-    | `m5.large`-`m5.large`  |                |          |
-    | `c5n.large`-`c5n.large` |                |          |
-    | `t3.medium`-`c5n.large`   |                |          |
-    | `m5.large`-`c5n.large`  |                |          |
-    | `m5.large`-`t3.medium` |                |          |
+    | `t3.medium`-`t3.medium` |   4.08             |  0.322        |
+    | `m5.large`-`m5.large`  |    4.93            |   0.206       |
+    | `c5n.large`-`c5n.large` |   4.94             |   0.314       |
+    | `t3.medium`-`c5n.large`   | 3.8               |  0.384        |
+    | `m5.large`-`c5n.large`  |   2.34             |   0.732       |
+    | `m5.large`-`t3.medium` |  2.02              |  0.892        |
 
     > Region: US East (N. Virginia)
 
