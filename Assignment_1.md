@@ -54,9 +54,9 @@
 
     | Connection | TCP b/w (Mbps)  | RTT (ms) |
     |------------|-----------------|--------------------|
-    | N. Virginia-Oregon |                 |                    |
-    | N. Virginia-N. Virginia  |                 |                    |
-    | Oregon-Oregon |                 |                    |
+    | N. Virginia-Oregon |    38.6             |    60.371               |
+    | N. Virginia-N. Virginia  |   4940              |   0.021                 |
+    | Oregon-Oregon |   4970              |  0.129                  |
 
     > All instances are `c5.large`.
 
