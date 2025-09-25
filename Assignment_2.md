@@ -1,6 +1,6 @@
-# CSC4160 Assignment 2 (7 points)
+# CSC6109 Assignment 2 (8 points)
 
-### Deadline: October 9, 2024, 23:59
+### Deadline: October 9, 2025, 23:59
 
 ### Name:
 
