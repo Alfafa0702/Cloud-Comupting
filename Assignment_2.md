@@ -129,14 +129,14 @@ Scale the # of workers from 2 to 10 (change the number of `replicas`).
 ```bash
 $ kubectl scale deployment worker --replicas=3
 ```
-
+![alt text](asset/image.png)
 | # of workers  | 1   | 2   | 3   | 4   | 5   | 10  |
 | ------------- | --- | --- | --- | --- | --- | --- |
-| hashes/second |     |     |     |     |     |     |
+| hashes/second |  4   | 8    | 12    | 12    | 10    |10     |
 
 > **Question**: What is the speedup bump when you have 10x workers?
 >
-> Answer: &lt;You answer goes here&gt;.
+> Answer: Even though the number of workers was increased 10 times (from 1 to 10), the hashes per second only increased from 4 to 10, which is a 2.5x speedup. This indicates that the system has a bottleneck that prevents linear scaling. The performance plateaus after 3 workers, suggesting that further increasing workers does not improve throughput.
 
 ### Rng / Hasher
 
@@ -167,11 +167,11 @@ $ httping <minikube-address>:<rng-np-port>
 
 | Service      | Hasher | Rng |
 | ------------ | ------ | --- |
-| Latency (ms) |        |     |
+| Latency (ms) | 2.1       | 744.7    |
 
 > **Question**: Which service is the bottleneck?
 >
-> Answer: &lt;You answer goes here&gt;.
+> Answer: The `rng` service has a significantly higher latency (744.7 ms) compared to the `hasher` service (only 2.1 ms). This means that the `rng` service is the bottleneck in the DockerCoins application. The worker spends most of its time waiting for random bytes from `rng`, which limits the overall hash generation rate.
 
 ## Application monitoring
 
@@ -305,7 +305,7 @@ kubectl describe  job loadtest-xxx
 ```
 
 replace loadtest-xxx with actual job name.
-
+![alt text](asset/image-2.png)
 To check the load test output
 
 ```bash
@@ -340,7 +340,7 @@ You can disable this annoying message by editing
 the .siegerc file in your home directory; change
 the directive 'show-logfile' to false.
 ```
-
+![alt text](asset/image-1.png)
 ### Create the autoscaling policy.
 
 Please replace `<FILL IN>` in the `hpa` yaml as which you need. Now we are ready to see our HPA in action.
@@ -368,7 +368,7 @@ $ kubectl describe hpa <FILL IN> # FILL IN: rng or hasher
 ```bash
 $ kubectl get hpa <FILL IN> -w # FILL IN: rng or hasher
 ```
-
+![alt text](asset/image-4.png)
 [Sample Output]
 
 ```bash
@@ -386,7 +386,14 @@ rng    Deployment/rng   cpu: 7%/5%   1         10        6          12m
 >
 > - Do you think scaling the rng/hasher based on CPU utilization makes sense? If not, what alternative metric could we use instead? Please explain your reasoning.
 >
-> Answer: &lt;Your answer goes here&gt;.
+> Answer: Scaling the rng or hasher service based on CPU utilization does not make full sense in this scenario.
+
+The rng service, in particular, is I/O-bound or latency-sensitive, not CPU-intensive. It relies on system entropy (/dev/random), which can cause high response latency even when CPU usage is low. As we observed, the rng service has a latency of 744.7ms, which is the bottleneck, yet its CPU utilization may not exceed 50% (only 3%/5%).
+
+A better metric for autoscaling would be request latency (e.g., 99th percentile response time) or requests in flight. By using Prometheus to monitor httplat metrics, we could configure HPA to scale when latency exceeds a threshold (e.g., >500ms). This would directly address the performance bottleneck and improve user experience.
+
+Note: Despite repeated attempts, the Prometheus UI could not be accessed due to ImagePullBackOff in the AWS environment. However, latency monitoring was successfully implemented using httplat, and the HPA behavior was analyzed based on real metrics.
+![alt text](asset/image-3.png)
 
 ## Grading
 
